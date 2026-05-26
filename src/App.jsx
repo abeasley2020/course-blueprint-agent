@@ -31,8 +31,9 @@ export default function App() {
 
   return (
     <div className="app">
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <Header />
-      <main className="workspace">
+      <main id="main-content" className="workspace" tabIndex={-1}>
         <BriefForm
           courseName={courseName}
           audience={audience}

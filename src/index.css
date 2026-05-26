@@ -1,8 +1,9 @@
 :root {
   /* ── Brand palette ──────────────────────────────────── */
-  --gold: #CFB991;          /* decorative: borders, backgrounds — NOT body text on light */
-  --gold-dark: #8B6914;     /* text use on light surfaces — 4.7:1 on white ✓ AA       */
-  --gold-focus: #7A5C1E;    /* focus rings on light bg — 5.6:1 on white ✓ AA          */
+  /* All text uses below clear WCAG 2.2 AAA (7:1 normal text / 4.5:1 large) */
+  --gold: #CFB991;          /* decorative: borders, backgrounds — NEVER text on white  */
+  --gold-dark: #5C4400;     /* text use on light surfaces — 8.4:1 on white ✓ AAA      */
+  --gold-focus: #7A5C1E;    /* focus rings on light bg — 5.6:1 on white ✓ UI 3:1     */
   --gold-light: #E8D9B8;    /* hover state for gold button                             */
   --black: #0D0D0D;         /* Purdue black                                            */
 
@@ -13,17 +14,17 @@
   --border: #D1CEC8;        /* subtle borders                        */
 
   /* ── Text on light backgrounds ──────────────────────── */
-  --text: #0D0D0D;          /* body text  — 19.5:1 on white ✓       */
-  --text-dim: #595959;      /* subdued    —  7.0:1 on white ✓ AA    */
-  --text-muted: #767676;    /* placeholder —  4.5:1 on white ✓ AA   */
+  --text: #0D0D0D;          /* body text  — 19.5:1 on white ✓ AAA   */
+  --text-dim: #595959;      /* subdued    —  7.0:1 on white ✓ AAA   */
+  --text-muted: #595959;    /* placeholder —  7.0:1 on white ✓ AAA  */
   --text-heading: #0D0D0D;  /* headings                              */
 
   /* ── Text on dark header ─────────────────────────────── */
-  --header-text: #F5F0E8;   /* warm white on black — ~18:1 ✓        */
-  --header-dim: #C8C4BC;    /* subdued on black — ~9:1 ✓            */
+  --header-text: #F5F0E8;   /* warm white on black — ~18:1 ✓ AAA    */
+  --header-dim: #C8C4BC;    /* subdued on black — ~9:1 ✓ AAA        */
 
   /* ── Error ───────────────────────────────────────────── */
-  --error: #B91C1C;         /* red — 5.9:1 on white ✓ AA           */
+  --error: #911818;         /* red — 8.4:1 on white ✓ AAA           */
   --error-bg: #FEF2F2;
   --error-border: #FECACA;
 
@@ -31,7 +32,7 @@
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
-  font: 15px/1.6 var(--sans);
+  font: 16px/1.6 var(--sans);
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;

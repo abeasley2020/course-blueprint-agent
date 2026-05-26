@@ -20,12 +20,20 @@ export default function BriefForm({
     reader.readAsText(file)
   }
 
+  const handleUploadKeyDown = (e) => {
+    // WAI-ARIA button role: activate on Enter OR Space
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      fileInputRef.current?.click()
+    }
+  }
+
   const canGenerate = brief.trim().length > 0 && !loading
 
   return (
-    <section className="panel panel-left">
+    <section className="panel panel-left" aria-labelledby="brief-panel-heading">
       <div className="panel-header">
-        <span className="panel-label">ID Brief</span>
+        <h2 id="brief-panel-heading" className="panel-label">ID Brief</h2>
         <span className="panel-hint">From SME Interview Agent</span>
       </div>
 
@@ -64,9 +72,10 @@ export default function BriefForm({
             onClick={() => fileInputRef.current?.click()}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && fileInputRef.current?.click()}
+            aria-label="Upload a brief file. Accepts .txt and .md"
+            onKeyDown={handleUploadKeyDown}
           >
-            <div className="upload-icon">📄</div>
+            <div className="upload-icon" aria-hidden="true">📄</div>
             <p className="upload-text">
               <span>Upload a file</span> or drag and drop
             </p>
@@ -77,10 +86,12 @@ export default function BriefForm({
               accept=".txt,.md"
               style={{ display: 'none' }}
               onChange={handleFileUpload}
+              aria-hidden="true"
+              tabIndex={-1}
             />
           </div>
 
-          <div className="or-divider">or paste below</div>
+          <div className="or-divider" aria-hidden="true">or paste below</div>
 
           <div className="form-group" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
             <label className="form-label" htmlFor="brief">
@@ -92,6 +103,7 @@ export default function BriefForm({
               placeholder={`Paste your structured ID brief here...\n\nExpected sections:\n• Course overview & rationale\n• Course outcomes\n• Learner profile\n• Delivery format & constraints\n• SME notes`}
               value={brief}
               onChange={(e) => onBriefChange(e.target.value)}
+              required
             />
           </div>
 

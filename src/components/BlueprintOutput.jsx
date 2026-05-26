@@ -25,12 +25,12 @@ export default function BlueprintOutput({ blueprint, loading, error, courseName,
   const hasOutput = !!blueprint && !loading
 
   return (
-    <section className="panel panel-right">
+    <section className="panel panel-right" aria-labelledby="output-panel-heading">
       <div className="panel-header">
-        <span className="panel-label">Blueprint Output</span>
+        <h2 id="output-panel-heading" className="panel-label">Blueprint Output</h2>
         {hasOutput ? (
           <div className="output-actions">
-            <button type="button" className="btn-action" onClick={handleCopy}>
+            <button type="button" className="btn-action" onClick={handleCopy} aria-live="polite">
               {copied ? 'Copied' : 'Copy markdown'}
             </button>
             <button type="button" className="btn-action btn-action-primary" onClick={handleDownload}>
@@ -44,16 +44,16 @@ export default function BlueprintOutput({ blueprint, loading, error, courseName,
 
       <div className="panel-body">
         {loading && (
-          <div className="output-loading">
-            <div className="spinner" />
+          <div className="output-loading" role="status" aria-live="polite">
+            <div className="spinner" aria-hidden="true" />
             <p className="output-loading-text">Generating blueprint...</p>
             <p className="output-loading-sub">Applying backward design principles to your brief</p>
           </div>
         )}
 
         {error && !loading && (
-          <div className="output-error">
-            <div className="output-error-icon">⚠</div>
+          <div className="output-error" role="alert">
+            <div className="output-error-icon" aria-hidden="true">⚠</div>
             <p className="output-error-title">Generation failed</p>
             <p className="output-error-msg">{error}</p>
             <button className="btn-retry" onClick={onDismissError}>
@@ -66,7 +66,7 @@ export default function BlueprintOutput({ blueprint, loading, error, courseName,
 
         {!blueprint && !loading && !error && (
           <div className="output-empty">
-            <div className="output-empty-icon">🎓</div>
+            <div className="output-empty-icon" aria-hidden="true">🎓</div>
             <p className="output-empty-title">No blueprint yet</p>
             <p className="output-empty-desc">
               Paste or upload your ID brief on the left, then click "Generate Blueprint" to produce

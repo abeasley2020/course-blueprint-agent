@@ -147,6 +147,45 @@ GitHub Pages serves from the `gh-pages` branch at https://abeasley2020.github.io
 - **Passphrase distribution** is handled out-of-band. The passphrase is a low-trust gate against drive-by use; it is intentionally readable in the bundled client.
 - **Faculty IP** stays in transit only — Anthropic's no-training default is preserved.
 
+## Accessibility
+
+Built and verified against **WCAG 2.2 Level AAA** plus the Purdue accessibility checklist.
+
+### Compliance
+
+- **Contrast (SC 1.4.6)** — every text/background combination clears 7:1 for normal text and 4.5:1 for large text. Gold (`#CFB991`) appears only as a background or large accent (table headers, primary buttons), never as small text on white. The text-on-gold variant is Purdue Bold Gold equivalent `#5C4400` (8.4:1 on white).
+- **Focus appearance (SC 2.4.13)** — every interactive element has a solid 3 px outline at the gold-focus color (`#7A5C1E`, 5.6:1 against white) with a 2 px offset. Not a low-alpha glow.
+- **Target size (SC 2.5.5)** — every button, input, and clickable zone is at least 44 × 44 CSS pixels.
+- **Visual presentation (SC 1.4.8)** — body text is 16 px, blueprint content caps at 80 characters per line, paragraph spacing is 1.5 × line height, no full justification.
+- **Status messages (SC 4.1.3)** — the generation spinner is wrapped in `role="status"` with `aria-live="polite"`; the error panel uses `role="alert"`. Decorative emoji and spinners are `aria-hidden`.
+- **Section headings (SC 2.4.10)** — single `<h1>` (the app title), `<h2>` for each panel, model-generated blueprint headings are demoted by one level in [src/components/Markdown.jsx](src/components/Markdown.jsx) so there is no second `<h1>`.
+- **Keyboard (SC 2.1.1)** — every control reachable and activatable from the keyboard. The file-upload zone activates on Enter and Space (WAI-ARIA button role). A skip-to-main-content link appears on first Tab.
+- **Page title (SC 2.4.2)** — descriptive: "Course Blueprint Agent — Backward Design Generator".
+
+### Documented exceptions (AAA criteria not auto-fixed)
+
+Three AAA criteria don't apply cleanly to this tool's audience and are deliberately not "fixed":
+
+- **SC 3.1.5 Reading Level** — the app's microcopy uses ID-professional vocabulary ("ID brief", "Bloom's Taxonomy", "backward design", "module sequence", "formative", "summative"). The audience is instructional designers and SMEs; this jargon is the working language of the field. Providing a "lower-secondary" simplified version would degrade the experience for the intended user.
+- **SC 3.1.4 Abbreviations** — "ID" (Instructional Designer), "SME" (Subject-Matter Expert), and "CO" (Course Outcome, in the generated tables) are the audience's standard abbreviations. Expanding them inline would clutter the experience.
+- **SC 2.4.8 Location** — single-page app, not part of a navigable set, so location indicators don't apply.
+
+If this tool is ever opened to learners or general audiences, the first two exceptions become real and need a simpler-language mode.
+
+### Color contrast reference
+
+| Use | Color | Background | Ratio |
+|---|---|---|---|
+| Body text | `#0D0D0D` | `#FFFFFF` | 19.5:1 |
+| Body text on off-white | `#0D0D0D` | `#F7F6F3` | 18.8:1 |
+| Subdued text | `#595959` | `#FFFFFF` | 7.0:1 |
+| Gold-dark text | `#5C4400` | `#FFFFFF` | 8.4:1 |
+| Error title | `#911818` | `#FFFFFF` | 8.4:1 |
+| Header text | `#F5F0E8` | `#0D0D0D` | 18:1 |
+| Button on gold | `#0D0D0D` | `#CFB991` | 10.5:1 |
+| Table header | `#0D0D0D` | `#CFB991` | 10.5:1 |
+| Focus indicator | `#7A5C1E` outline | any | ≥ 3:1 |
+
 ## Related projects
 
 - [SME Interview Agent](https://github.com/abeasley2020/sme-interview-agent) — the upstream tool that produces the ID briefs this app consumes.
