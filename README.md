@@ -2,7 +2,7 @@
 
 A small React + Vite tool that converts an ID brief (from a faculty SME interview) into a backward-designed course blueprint via a single Claude call.
 
-**Live demo:** https://abeasley2020.github.io/course-blueprint-agent/
+**Live demo:** https://course-blueprint-agent.vercel.app
 
 ## Overview
 
@@ -129,15 +129,26 @@ The preview server serves the built bundle on http://localhost:4173.
 
 ## Deployment
 
-GitHub Pages, via the `gh-pages` branch.
+Vercel, via the [GitHub integration](https://vercel.com/docs/git) on this repo.
+
+Every push to `main` triggers a production deploy automatically. The Vercel project is `andrebeasley2012-2848s-projects/course-blueprint-agent` and the canonical production URL is https://course-blueprint-agent.vercel.app.
+
+To deploy from the CLI on demand:
 
 ```bash
-npm run deploy
+vercel              # preview deployment
+vercel --prod       # production deployment
 ```
 
-That runs `vite build` and pushes `dist/` to the `gh-pages` branch on `origin`. The live site updates within a minute or two.
+To inspect or roll back:
 
-GitHub Pages serves from the `gh-pages` branch at https://abeasley2020.github.io/course-blueprint-agent/ — `vite.config.js` sets `base: '/course-blueprint-agent/'` so the bundle resolves under that path.
+```bash
+vercel ls                      # recent deployments
+vercel inspect <url>           # build info for a specific deploy
+vercel rollback <url>          # promote an older deploy to production
+```
+
+The previous GitHub Pages deployment at `abeasley2020.github.io/course-blueprint-agent` is no longer the source of truth; the `gh-pages` branch remains for history but receives no new pushes.
 
 ## Privacy and access
 
