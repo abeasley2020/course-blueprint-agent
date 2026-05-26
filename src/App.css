@@ -258,6 +258,50 @@
   cursor: not-allowed;
 }
 
+/* ── Output panel action buttons (copy / download) ───── */
+.output-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-action {
+  appearance: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);       /* 7:1 on white ✓ */
+  cursor: pointer;
+  letter-spacing: 0.2px;
+  transition: border-color 0.15s, color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+.btn-action:hover {
+  border-color: var(--gold-dark);
+  color: var(--text);
+}
+
+.btn-action:focus,
+.btn-action:focus-visible {
+  outline: none;
+  border-color: var(--gold-focus);
+  box-shadow: 0 0 0 3px rgba(122, 92, 30, 0.2);
+}
+
+.btn-action-primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--black);          /* 10.5:1 on gold ✓ */
+}
+
+.btn-action-primary:hover {
+  background: #B8A47A;
+  border-color: #B8A47A;
+  color: var(--black);
+}
+
 /* ── Output panel empty state ────────────────────────── */
 .output-empty {
   display: flex;
@@ -508,24 +552,24 @@
 }
 
 .blueprint-content th {
-  background: var(--surface-2);
-  color: var(--text-heading);   /* #0D0D0D on #F0EEE9 ✓ */
+  background: var(--gold);       /* #CFB991 — Purdue gold header */
+  color: var(--black);           /* #0D0D0D on #CFB991 = 10.5:1 ✓ */
   font-weight: 700;
-  padding: 8px 12px;
+  padding: 10px 12px;
   text-align: left;
-  border: 1px solid var(--border);
+  border: 1px solid #B8A47A;     /* darker gold border, decorative */
 }
 
 .blueprint-content td {
-  padding: 7px 12px;
-  border: 1px solid var(--border);
+  padding: 10px 12px;
+  border: 1px solid #D6C9A8;     /* light gold border, decorative */
   color: var(--text);
-  background: var(--surface);
+  background: var(--surface);    /* white */
   vertical-align: top;
 }
 
 .blueprint-content tr:nth-child(even) td {
-  background: var(--surface-2);
+  background: var(--bg);         /* #F7F6F3 off-white — zebra striping */
 }
 
 /* ── Responsive ──────────────────────────────────────── */

@@ -41,7 +41,8 @@ The output exists only as on-screen markdown. Closing the tab discards it.
 
 ## Features
 
-- **Brief input** by paste, drag-and-drop file (`.txt`, `.md`, `.docx`), or direct typing.
+- **Brief input** by paste, file upload (`.txt`, `.md`), or direct typing.
+- **Copy and download** — copy the rendered blueprint as markdown, or download it as a `.md` file named after the course.
 - **Backward-designed output** in five sections:
   1. Course Overview (title, audience, delivery format, duration)
   2. Course Outcomes mapped to Bloom's Taxonomy
@@ -56,7 +57,7 @@ The output exists only as on-screen markdown. Closing the tab discards it.
 | Layer | Technology |
 |---|---|
 | Frontend | React 19 + Vite (plain JSX) |
-| Markdown | Custom renderer in [src/App.jsx](src/App.jsx) (the declared `react-markdown` dep is currently unused) |
+| Markdown | `react-markdown` + `remark-gfm` (tables), wrapped in [src/components/Markdown.jsx](src/components/Markdown.jsx) |
 | State | `useState` only — no store, no router |
 | AI access | [Anthropic Messages API](https://docs.anthropic.com/en/api/messages) via shared Cloudflare Worker proxy |
 | Model | `claude-sonnet-4-20250514` at `max_tokens: 4000` |
@@ -67,22 +68,33 @@ The output exists only as on-screen markdown. Closing the tab discards it.
 
 ```
 course-blueprint-agent/
-├── public/              # static assets served as-is
+├── public/                       # static assets served as-is
 │   ├── favicon.svg
 │   └── icons.svg
 ├── src/
-│   ├── App.jsx          # whole app — UI, fetch call, markdown renderer (~400 lines)
-│   ├── App.css          # Purdue-themed component styles
-│   ├── main.jsx         # React entry point
-│   ├── index.css        # global resets
-│   └── assets/          # react.svg, vite.svg, hero.png
-├── index.html           # Vite root
-├── vite.config.js       # `base: '/course-blueprint-agent/'` for gh-pages
+│   ├── App.jsx                   # top-level orchestration (~55 lines)
+│   ├── App.css                   # Purdue-themed component styles
+│   ├── main.jsx                  # React entry point
+│   ├── index.css                 # global resets + brand tokens
+│   ├── components/
+│   │   ├── Header.jsx
+│   │   ├── BriefForm.jsx         # left panel — inputs, file upload
+│   │   ├── BlueprintOutput.jsx   # right panel — output + copy/download buttons
+│   │   └── Markdown.jsx          # react-markdown + remark-gfm wrapper
+│   ├── lib/
+│   │   ├── api.js                # generateBlueprint() — calls the proxy
+│   │   ├── clipboard.js          # copyToClipboard()
+│   │   └── download.js           # downloadMarkdown(), slugifyFilename()
+│   ├── prompts/
+│   │   └── blueprint.js          # system prompt + few-shot examples + model config
+│   └── assets/                   # react.svg, vite.svg, hero.png
+├── index.html                    # Vite root
+├── vite.config.js                # `base: '/course-blueprint-agent/'` for gh-pages
 ├── eslint.config.js
-└── package.json         # scripts: dev, build, lint, preview, deploy
+└── package.json                  # scripts: dev, build, lint, preview, deploy
 ```
 
-The system prompt and proxy URL are constants at the top of [src/App.jsx](src/App.jsx) — edit them there if they need to change.
+The system prompt, model name, proxy URL, and few-shot examples all live in [src/prompts/blueprint.js](src/prompts/blueprint.js) — that's the file to edit when tuning generation quality.
 
 ## Local development
 
