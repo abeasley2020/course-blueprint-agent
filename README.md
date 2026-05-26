@@ -6,7 +6,7 @@ A small React + Vite tool that converts an ID brief (from a faculty SME intervie
 
 ## Overview
 
-The instructional design team at Purdue's Center for Digital Development partners with dozens of faculty each year. Early in every project, an ID synthesizes an SME interview into an "ID Brief" that captures the course's rationale, audience, intended outcomes, and constraints. The next step — converting that brief into a defensible course blueprint with Bloom-aligned outcomes, a module sequence, and an aligned assessment plan — is repetitive and time-consuming.
+The instructional design team at PUO Course Production partners with dozens of faculty each year. Early in every project, a senior manager synthesizes an SME interview into an "ID Brief" that captures the course's rationale, audience, intended outcomes, and constraints. The next step — converting that brief into a defensible course blueprint with Bloom-aligned outcomes, a module sequence, and an aligned assessment plan — is repetitive and time-consuming.
 
 This tool handles that conversion. It is the second stage of a two-step pipeline: the [SME Interview Agent](https://github.com/abeasley2020/sme-interview-agent) produces the brief; this app consumes it and produces a backward-designed blueprint that the ID can refine and share with faculty.
 
