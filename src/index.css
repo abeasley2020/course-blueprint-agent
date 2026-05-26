@@ -1,0 +1,72 @@
+:root {
+  /* ── Brand palette ──────────────────────────────────── */
+  --gold: #CFB991;          /* decorative: borders, backgrounds — NOT body text on light */
+  --gold-dark: #8B6914;     /* text use on light surfaces — 4.7:1 on white ✓ AA       */
+  --gold-focus: #7A5C1E;    /* focus rings on light bg — 5.6:1 on white ✓ AA          */
+  --gold-light: #E8D9B8;    /* hover state for gold button                             */
+  --black: #0D0D0D;         /* Purdue black                                            */
+
+  /* ── Light surfaces ─────────────────────────────────── */
+  --bg: #F7F6F3;            /* page / right-panel base (off-white)   */
+  --surface: #FFFFFF;       /* left panel                            */
+  --surface-2: #F0EEE9;     /* inputs, upload zone, table headers    */
+  --border: #D1CEC8;        /* subtle borders                        */
+
+  /* ── Text on light backgrounds ──────────────────────── */
+  --text: #0D0D0D;          /* body text  — 19.5:1 on white ✓       */
+  --text-dim: #595959;      /* subdued    —  7.0:1 on white ✓ AA    */
+  --text-muted: #767676;    /* placeholder —  4.5:1 on white ✓ AA   */
+  --text-heading: #0D0D0D;  /* headings                              */
+
+  /* ── Text on dark header ─────────────────────────────── */
+  --header-text: #F5F0E8;   /* warm white on black — ~18:1 ✓        */
+  --header-dim: #C8C4BC;    /* subdued on black — ~9:1 ✓            */
+
+  /* ── Error ───────────────────────────────────────────── */
+  --error: #B91C1C;         /* red — 5.9:1 on white ✓ AA           */
+  --error-bg: #FEF2F2;
+  --error-border: #FECACA;
+
+  /* ── Typography ─────────────────────────────────────── */
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 15px/1.6 var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: var(--bg);
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3 {
+  font-family: var(--sans);
+  color: var(--text-heading);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+textarea, input, select, button {
+  font-family: var(--sans);
+}
